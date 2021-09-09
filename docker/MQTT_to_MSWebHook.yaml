@@ -1,0 +1,18 @@
+version: "3.0"
+
+services:
+  MQTT_to_MSWebHook:
+    build: 
+      context: .
+      dockerfile: MQTT_to_MSWebHoook.Dockerfile
+    image: MQTT_to_MSWebHoook
+    container_name: MQTT_to_MSWebHoook
+    privileged: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 1024m
+        max-file: "5"
+
+    restart: always
+    command: python ./App/MQTT_to_WebHook.py
